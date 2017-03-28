@@ -6,6 +6,7 @@
 package ine5646.exemplorest;
 
 import com.google.gson.Gson;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -29,14 +30,18 @@ public class DivisorREST {
     @Produces("application/json")
     public String divisores(@PathParam("numero") int numero) {
 
-        List<Integer> listaDivisores = null;
+        List<Integer> listaDivisores = new ArrayList<>();
+        
+        listaDivisores.add(1);
 
-        for (int i = 1; i <= numero; i++) {
+        for (int i = 2; i <= numero / 2; i++) {
             
             if (numero % i == 0) {
                 listaDivisores.add(i);
             }
         }
+        
+        listaDivisores.add(numero);
         
         return new Gson().toJson(listaDivisores);
     }
